@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Self-Inspect by Ejentum: a question your agent would not think to ask itself. Thought in, metathought out. Keyless, deterministic, no LLM, open CSV, REST + MCP." width="100%">
+</p>
+
 # Self-Inspect
 
 **A question your agent would not think to ask itself.**
