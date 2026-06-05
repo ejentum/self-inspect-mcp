@@ -1,8 +1,82 @@
 # Self-Inspect
 
-An agent expresses a free-text thought, or describes the task it is working on. It always gets back **one metathought**: a short abstract question that makes it inspect its own task and assumptions before continuing. Selection is a transparent heuristic over an open CSV. No LLM, no embeddings, no semantic similarity, no API key. There is no failure case: it always returns a metathought.
+**A question your agent would not think to ask itself.**
 
-The point of this repo is that **what runs is what is published**. The CSV and the selector you read here are the exact logic the hosted endpoint executes, and a test proves it.
+An agent sends a thought, or a description of the task it is working on. It gets back one *metathought*: a short, abstract question that turns the agent's attention back onto its own task and assumptions before it continues. Not advice, not an answer. A question.
+
+Keyless, free, deterministic. No LLM, no embeddings, no semantic similarity. Selection is a small heuristic over an open CSV you can read in five minutes, and the code that answers `api.ejentum.com/self-inspect` is the code in this repo. A test proves the two cannot drift.
+
+## Why an agent needs this
+
+Agents move forward. That is the whole problem. Left to itself, an agent:
+
+- commits to its first interpretation and never reopens it,
+- piles up assumptions it never names,
+- drifts from the original goal over a long chain of steps,
+- stops at the first answer that looks plausible,
+- grows more confident without growing more evidence,
+- agrees with the user because agreeing is the easy path.
+
+None of these are knowledge failures. The model already knows better. They are attention failures: the agent never stops to ask the one question that would have caught it.
+
+And it cannot reliably ask that question itself. Whatever picks what to reflect on is the same process that is already committed, so an agent that "double-checks" tends to re-run its own bias and call it confidence. Acknowledging a trap is not escaping it.
+
+Self-Inspect is the external question. It returns a metathought the agent would not have produced on its own: *What is assumed? What is fixed? What does not follow? What is missing? When would this not hold? What confidence is warranted?* The agent still does the thinking. The tool just makes it look.
+
+## When to call it
+
+Put it in the loop at the moments an agent would otherwise barrel through:
+
+- after forming a hypothesis, before acting on it,
+- before committing to a plan or a final answer,
+- at each step of a long chain, to catch drift,
+- when the agent notices it is agreeing, or feeling certain.
+
+Send a thought, get a metathought, answer it to yourself, continue with more awareness. It always returns a question (there is no "no result" case), one call, no model in the loop, no key.
+
+## Quickstart
+
+Send a `thought`, get a `metathought`. No key.
+
+**REST (any language):**
+
+```sh
+curl -s -X POST https://api.ejentum.com/self-inspect \
+  -H "Content-Type: application/json" \
+  -d '{"thought":"I am committing to this architecture and treating it as fixed"}'
+# -> [{ "label": "commitment", "metathought": "What is fixed?" }]
+```
+
+**MCP, Claude Code:**
+
+```sh
+claude mcp add --transport http self-inspect https://api.ejentum.com/self-inspect-mcp
+```
+
+**MCP, Claude Desktop / Cursor / any HTTP-MCP client:**
+
+```json
+{
+  "mcpServers": {
+    "self-inspect": {
+      "type": "http",
+      "url": "https://api.ejentum.com/self-inspect-mcp"
+    }
+  }
+}
+```
+
+The MCP server exposes one tool, `self_inspect`, that takes a `thought` and returns the metathought. No install, no key.
+
+## Endpoints
+
+| Surface | Endpoint | Auth | Returns |
+|---|---|---|---|
+| REST | `POST https://api.ejentum.com/self-inspect` | keyless, per-IP rate limit (120/min) | `[{ label, metathought }]` |
+| MCP over HTTP | `https://api.ejentum.com/self-inspect-mcp` (Streamable HTTP) | keyless, per-IP rate limit (60/min) | tool `self_inspect` -> metathought text |
+| MCP stdio / offline | the `mcp/` package; `SELF_INSPECT_LOCAL=1` runs the selector locally | keyless | tool `self_inspect` (npm publish pending) |
+
+Both hosted endpoints are keyless and protected by per-IP rate limiting plus standard security headers (HSTS, `nosniff`, frame-deny).
 
 ## How selection works
 
@@ -43,24 +117,16 @@ npm run build     # regenerate dist/code-node.js
 git diff --exit-code dist/code-node.js   # clean == no drift
 ```
 
-## Hosted endpoints
+## Response contract
 
-Two surfaces, one engine. Both keyless, both rate-limited per IP.
+REST returns an array of one object with exactly two fields: `label` (the lens, from `input_type`) and `metathought` (the question). Unroutable input still returns a universal default (a different lens, same shape):
 
-REST:
-
-```sh
-curl -s -X POST https://api.ejentum.com/self-inspect \
-  -H "Content-Type: application/json" \
-  -d '{"thought":"How much confidence is warranted in this result?"}'
-# -> [{ "label": "confidence", "metathought": "What confidence is warranted?" }]
-# unroutable input still returns a universal default:
-# -> [{ "label": "verification", "metathought": "What is verified?" }]
+```
+{"thought":"How much confidence is warranted in this result?"} -> [{ "label": "confidence", "metathought": "What confidence is warranted?" }]
+{"thought":"order a pizza"}                                     -> [{ "label": "sequence",   "metathought": "What order is active?" }]
 ```
 
-The response is exactly two fields: `label` (the lens, from `input_type`) and `metathought` (the question). The MCP surface returns the `metathought` text only.
-
-MCP-over-HTTP at `https://api.ejentum.com/self-inspect-mcp` exposes one tool, `self_inspect`, for HTTP-MCP clients that connect with no install. The MCP surface returns the metathought text only.
+The MCP surfaces (`self_inspect`) return the `metathought` text only.
 
 ## Deploying the engine (operator)
 
