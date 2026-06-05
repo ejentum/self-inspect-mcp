@@ -850,7 +850,7 @@ function normalize(input) {
 //
 // Philosophy: Self-Inspect ALWAYS returns a metathought. There is always a
 // worthwhile question an agent can ask about its own task and assumptions, so we
-// never return null. If the situation routes to a specific lens, we return that
+// never return null. If the thought routes to a specific lens, we return that
 // lens's best question (matched: true). If nothing routes, we return a universal
 // self-inspection question about task and assumptions (matched: false). The
 // caller always gets something to question itself with.
@@ -860,7 +860,7 @@ function normalize(input) {
 // (operator_rank 1..n), tagged strict or booster (runtime_tier). Every column is
 // used for routing.
 //
-// select(situation, rows) -> { id, metathought, input_type, operator_rank, runtime_tier, matched }
+// select(thought, rows) -> { id, metathought, input_type, operator_rank, runtime_tier, matched }
 //
 // Two-level routing:
 //   1. Score each lens: 3 * (type-name tokens present) + 1 * (distinct content
@@ -870,7 +870,7 @@ function normalize(input) {
 //      lexicographic lens) and, within it, the question with the most local
 //      content hits (tiebreak lowest operator_rank). matched: true.
 //   3. If no lens has any signal, return a universal default question chosen
-//      deterministically from DEFAULT_IDS by a stable hash of the situation, so
+//      deterministically from DEFAULT_IDS by a stable hash of the thought, so
 //      different inputs get different nudges. matched: false.
 
 
@@ -878,7 +878,7 @@ const W_TYPE = 3;
 const W_CONTENT = 1;
 
 // Universal self-inspection questions, leaning on task + assumptions, used when a
-// situation routes to no specific lens. Every id must exist in the CSV.
+// thought routes to no specific lens. Every id must exist in the CSV.
 const DEFAULT_IDS = [
   "assumption-1", // What is assumed?
   "completeness-1", // What is missing?
@@ -941,17 +941,17 @@ function rowToResult(row, matched) {
   };
 }
 
-function defaultResult(situation, rows) {
-  const idx = hashCode(normalize(situation)) % DEFAULT_IDS.length;
+function defaultResult(thought, rows) {
+  const idx = hashCode(normalize(thought)) % DEFAULT_IDS.length;
   const id = DEFAULT_IDS[idx];
   const row =
     rows.find((r) => String(r.input_type) + "-" + String(r.operator_rank) === id) ||
     rows[0];
   return rowToResult(row, false);
 }
-function select(situation, rows) {
+function select(thought, rows) {
   if (!rows || rows.length === 0) return null;
-  const hay = new Set(words(situation));
+  const hay = new Set(words(thought));
 
   // Group rows by lens, preserving CSV order for determinism.
   const groups = new Map();
@@ -976,7 +976,7 @@ function select(situation, rows) {
   }
 
   // No signal at all: always return a universal self-inspection question.
-  if (scored.length === 0) return defaultResult(situation, rows);
+  if (scored.length === 0) return defaultResult(thought, rows);
 
   // Level 2: pick the best lens.
   scored.sort(
@@ -1008,8 +1008,8 @@ function select(situation, rows) {
 
 // --- n8n Code node entry (mode: Run Once for All Items) ---
 const body = ($input.first().json && $input.first().json.body) || {};
-const situation = typeof body.situation === "string" ? body.situation : "";
-const picked = select(situation, ROWS);
+const thought = typeof body.thought === "string" ? body.thought : "";
+const picked = select(thought, ROWS);
 return [
   {
     json: picked

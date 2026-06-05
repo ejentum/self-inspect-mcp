@@ -47,8 +47,8 @@ export function generate() {
     "",
     "// --- n8n Code node entry (mode: Run Once for All Items) ---",
     "const body = ($input.first().json && $input.first().json.body) || {};",
-    'const situation = typeof body.situation === "string" ? body.situation : "";',
-    "const picked = select(situation, ROWS);",
+    'const thought = typeof body.thought === "string" ? body.thought : "";',
+    "const picked = select(thought, ROWS);",
     "return [",
     "  {",
     "    json: picked",
@@ -62,7 +62,7 @@ export function generate() {
 
 // CommonJS build of the same engine, for hosts that require() rather than import
 // (the Ejentum Express backend is CommonJS). Inlines the CSV rows + the literal
-// normalize + selector source, exports selfInspect(situation). Drift-tested
+// normalize + selector source, exports selfInspect(thought). Drift-tested
 // against the committed dist/backend.cjs exactly like the n8n code node, so the
 // backend runs the published logic with no hand-maintained second copy.
 export function generateBackendCjs() {
@@ -87,8 +87,8 @@ export function generateBackendCjs() {
     "",
     selectorSrc,
     "",
-    "function selfInspect(situation) {",
-    "  const picked = select(situation, ROWS);",
+    "function selfInspect(thought) {",
+    "  const picked = select(thought, ROWS);",
     "  return picked",
     "    ? { label: picked.input_type, metathought: picked.metathought }",
     "    : { label: null, metathought: null };",

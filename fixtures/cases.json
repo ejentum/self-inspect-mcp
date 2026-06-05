@@ -1,14 +1,14 @@
 [
-  { "situation": "What am I treating as an assumption that I have not checked?", "expect_id": "assumption-4" },
-  { "situation": "How much confidence is warranted in this result?", "expect_id": "confidence-4" },
-  { "situation": "I might be missing something or leaving it incomplete", "expect_id": "completeness-1" },
-  { "situation": "Where is the friction in this plan?", "expect_id": "friction-2" },
-  { "situation": "What is the boundary of this conclusion?", "expect_id": "boundary-1" },
-  { "situation": "What is being inferred and what does not follow?", "expect_id": "inference-1" },
-  { "situation": "This might be outside the scope of the task", "expect_id": "scope-2" },
-  { "situation": "What premise is implicit here?", "expect_id": "assumption-5" },
-  { "situation": "What remains uncertain or ambiguous?", "expect_id": "uncertainty-1" },
-  { "situation": "What constraint governs this decision?", "expect_id": "constraint-4" },
-  { "situation": "What is the capital of France?", "expect_matched": false },
-  { "situation": "Schedule a meeting for tomorrow", "expect_matched": false }
+  { "thought": "What am I treating as an assumption that I have not checked?", "expect_id": "assumption-4" },
+  { "thought": "How much confidence is warranted in this result?", "expect_id": "confidence-4" },
+  { "thought": "I might be missing something or leaving it incomplete", "expect_id": "completeness-1" },
+  { "thought": "Where is the friction in this plan?", "expect_id": "friction-2" },
+  { "thought": "What is the boundary of this conclusion?", "expect_id": "boundary-1" },
+  { "thought": "What is being inferred and what does not follow?", "expect_id": "inference-1" },
+  { "thought": "This might be outside the scope of the task", "expect_id": "scope-2" },
+  { "thought": "What premise is implicit here?", "expect_id": "assumption-5" },
+  { "thought": "What remains uncertain or ambiguous?", "expect_id": "uncertainty-1" },
+  { "thought": "What constraint governs this decision?", "expect_id": "constraint-4" },
+  { "thought": "What is the capital of France?", "expect_matched": false },
+  { "thought": "Schedule a meeting for tomorrow", "expect_matched": false }
 ]

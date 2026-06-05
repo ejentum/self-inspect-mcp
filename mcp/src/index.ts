@@ -21,18 +21,18 @@ server.tool(
   "self_inspect",
   DESCRIPTION,
   {
-    situation: z
+    thought: z
       .string()
-      .min(1, "situation must be a non-empty string")
+      .min(1, "thought must be a non-empty string")
       .describe(
         "A free-text thought or a description of the task you are working on. Express what you are doing or thinking; the more concrete, the sharper the returned question. Example: 'I'm about to assert the default timeout is 30s from memory'.",
       ),
   },
-  async ({ situation }: { situation: string }) => {
+  async ({ thought }: { thought: string }) => {
     try {
       const result = useLocal
-        ? await (await import("./local.js")).selectLocal(situation)
-        : await callSelfInspect(situation);
+        ? await (await import("./local.js")).selectLocal(thought)
+        : await callSelfInspect(thought);
       // Self-Inspect always returns a metathought; FALLBACK only guards an
       // unexpected empty response (e.g. a network surface returning nothing).
       const text = result.metathought ? result.metathought : FALLBACK;

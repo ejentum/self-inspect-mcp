@@ -27,7 +27,7 @@ No API key. No `env` block required.
 
 ## The tool
 
-`self_inspect({ situation: string })` -> one metathought, or a no-match note.
+`self_inspect({ thought: string })` -> one metathought, or a no-match note.
 
 Pass what you are *doing*, not the topic. Good: `"I'm about to assert the default timeout is 30s from memory"`. Returns the matched metathought text to absorb and act on.
 

@@ -6,10 +6,10 @@ The point of this repo is that **what runs is what is published**. The CSV and t
 
 ## How selection works
 
-`select(situation, rows)` (`src/selector.js`) routes in two levels, deterministically, over the data in `selfinspect.csv`:
+`select(thought, rows)` (`src/selector.js`) routes in two levels, deterministically, over the data in `selfinspect.csv`:
 
-1. Normalize the situation: lowercase, Unicode NFKC, non-alphanumerics to spaces, collapse whitespace, tokenize (`src/normalize.js`).
-2. Score each lens (`input_type`): `3 x (type-name tokens present in the situation) + 1 x (distinct content tokens from that lens's questions present)`. Content tokens are the `meta_thought` words minus a small visible stopword list. Evidence aggregates across all of a lens's questions, so a lens can win on signal spread across several of its rows.
+1. Normalize the thought: lowercase, Unicode NFKC, non-alphanumerics to spaces, collapse whitespace, tokenize (`src/normalize.js`).
+2. Score each lens (`input_type`): `3 x (type-name tokens present in the thought) + 1 x (distinct content tokens from that lens's questions present)`. Content tokens are the `meta_thought` words minus a small visible stopword list. Evidence aggregates across all of a lens's questions, so a lens can win on signal spread across several of its rows.
 3. Pick the highest-scoring lens; ties prefer `strict` over `booster`, then lexicographic lens name.
 4. Within the chosen lens, return the question with the most local content matches; tiebreak by lowest `operator_rank` (the canonical question). `matched: true`.
 5. If no lens has any signal, return a universal self-inspection question (about task and assumptions) chosen deterministically from a small default set by a stable hash of the input, so different inputs get different nudges. `matched: false`.
@@ -52,7 +52,7 @@ REST:
 ```sh
 curl -s -X POST https://api.ejentum.com/self-inspect \
   -H "Content-Type: application/json" \
-  -d '{"situation":"How much confidence is warranted in this result?"}'
+  -d '{"thought":"How much confidence is warranted in this result?"}'
 # -> [{ "label": "confidence", "metathought": "What confidence is warranted?" }]
 # unroutable input still returns a universal default:
 # -> [{ "label": "verification", "metathought": "What is verified?" }]

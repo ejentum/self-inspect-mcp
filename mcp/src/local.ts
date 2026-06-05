@@ -9,7 +9,7 @@ import { dirname, join } from "node:path";
 import type { SelfInspectResult } from "./client.js";
 
 let rows: unknown[] | null = null;
-let selectFn: ((situation: string, rows: unknown[]) => unknown) | null = null;
+let selectFn: ((thought: string, rows: unknown[]) => unknown) | null = null;
 
 async function ensureLoaded(): Promise<void> {
   if (rows && selectFn) return;
@@ -26,10 +26,10 @@ async function ensureLoaded(): Promise<void> {
 }
 
 export async function selectLocal(
-  situation: string,
+  thought: string,
 ): Promise<SelfInspectResult> {
   await ensureLoaded();
-  const picked = selectFn!(situation, rows!) as {
+  const picked = selectFn!(thought, rows!) as {
     id: string;
     metathought: string;
     matched: boolean;

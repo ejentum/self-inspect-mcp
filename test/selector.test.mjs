@@ -25,7 +25,7 @@ test("CSV parses into rows with the expected columns", () => {
 
 test("Self-Inspect ALWAYS returns a non-empty metathought (never null)", () => {
   const inputs = [
-    ...cases.map((c) => c.situation),
+    ...cases.map((c) => c.thought),
     "",
     "asdfghjkl qwerty zxcvbnm",
     "x",
@@ -44,24 +44,24 @@ test("Self-Inspect ALWAYS returns a non-empty metathought (never null)", () => {
 test("routed fixtures hit their expected lens (matched: true)", () => {
   for (const c of cases) {
     if (!c.expect_id) continue;
-    const res = select(c.situation, rows);
-    assert.equal(res.id, c.expect_id, `situation: ${c.situation}`);
-    assert.equal(res.matched, true, `situation: ${c.situation}`);
+    const res = select(c.thought, rows);
+    assert.equal(res.id, c.expect_id, `thought: ${c.thought}`);
+    assert.equal(res.matched, true, `thought: ${c.thought}`);
   }
 });
 
 test("unroutable input falls back to a universal default (matched: false, still a metathought)", () => {
   for (const c of cases) {
     if (c.expect_matched !== false) continue;
-    const res = select(c.situation, rows);
-    assert.equal(res.matched, false, `situation: ${c.situation}`);
+    const res = select(c.thought, rows);
+    assert.equal(res.matched, false, `thought: ${c.thought}`);
     assert.ok(res.metathought.length > 0);
   }
 });
 
 test("routing is deterministic across repeated calls", () => {
   for (const c of cases) {
-    assert.deepEqual(select(c.situation, rows), select(c.situation, rows));
+    assert.deepEqual(select(c.thought, rows), select(c.thought, rows));
   }
 });
 

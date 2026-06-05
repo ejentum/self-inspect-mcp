@@ -11,7 +11,7 @@ export interface SelfInspectResult {
 }
 
 export async function callSelfInspect(
-  situation: string,
+  thought: string,
 ): Promise<SelfInspectResult> {
   const apiUrl = process.env.SELF_INSPECT_API_URL || DEFAULT_API_URL;
 
@@ -20,7 +20,7 @@ export async function callSelfInspect(
     response = await fetch(apiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ situation }),
+      body: JSON.stringify({ thought }),
     });
   } catch (err) {
     const detail = err instanceof Error ? err.message : String(err);
