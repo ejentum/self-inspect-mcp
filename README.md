@@ -142,6 +142,10 @@ The hosted side runs `dist/backend.cjs` (the CommonJS build of the same CSV + se
 
 `mcp/` is a standalone MCP server (`self-inspect-mcp`) exposing one tool, `self_inspect`. By default it calls the hosted endpoint; set `SELF_INSPECT_LOCAL=1` to run this exact selector offline against a vendored copy of the CSV. See `mcp/README.md`.
 
+## Troubleshooting
+
+**`CRYPT_E_NO_REVOCATION_CHECK` or a TLS revocation error on connect.** The certificate is valid (Let's Encrypt, full chain, `verify ok`). TLS uses Let's Encrypt, which is CRL-based now: OCSP was retired by the CA in 2026, so there is no OCSP responder to query. Strict clients that hard-fail revocation when OCSP is unavailable (some Windows/schannel setups) can report this even though the cert is fine. Most clients (Node, Python TLS) soft-fail and connect normally. If yours hard-fails, set revocation checking to soft-fail; the certificate is valid.
+
 ## License
 
 MIT.
