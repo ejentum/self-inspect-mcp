@@ -1,0 +1,5 @@
+# Force LF everywhere so the generated artifacts (dist/code-node.js,
+# dist/backend.cjs) stay byte-identical to the generator output on every
+# platform. Without this, autocrlf would rewrite checkouts to CRLF on Windows
+# and the drift test would fail on a fresh clone.
+* text=auto eol=lf
