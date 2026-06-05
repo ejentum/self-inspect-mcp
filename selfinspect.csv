@@ -1,0 +1,138 @@
+input_type,operator_rank,runtime_tier,meta_thought
+abstraction,1,strict,What is abstracted?
+abstraction,2,strict,What detail is hidden?
+alignment,1,strict,What alignment is active?
+alignment,2,strict,What is aligned?
+alignment,3,strict,What is misaligned?
+assumption,1,strict,What is assumed?
+assumption,2,strict,What is taken as given?
+assumption,3,strict,What depends on being true?
+assumption,4,strict,Which assumption matters most?
+assumption,5,strict,What premise is implicit?
+boundary,1,strict,What limits this conclusion?
+boundary,2,strict,When would this not hold?
+boundary,3,strict,What condition changes this?
+commitment,1,strict,What is being committed to?
+commitment,2,strict,What is fixed?
+commitment,3,strict,What remains reversible?
+commitment,4,strict,What is premature?
+completeness,1,strict,What is missing?
+completeness,2,strict,What has not been considered?
+completeness,3,strict,What remains unresolved?
+completeness,4,strict,What is incomplete?
+confidence,1,strict,What supports confidence?
+confidence,2,strict,How strong is the support?
+confidence,3,strict,Why should this be trusted?
+confidence,4,strict,What confidence is warranted?
+confidence,5,strict,What limits confidence?
+consistency,1,strict,What conflicts?
+consistency,2,strict,What is inconsistent?
+constraint,1,strict,What is constrained?
+constraint,2,strict,What must remain true?
+constraint,3,strict,What is not allowed?
+constraint,4,strict,What constraint governs this?
+criterion,1,strict,What criterion applies?
+criterion,2,strict,What standard is active?
+criterion,3,strict,What is being judged by?
+criterion,4,strict,What determines validity?
+dependency,1,strict,What does this depend on?
+dependency,2,strict,What depends on this?
+dependency,3,strict,What must hold first?
+distinction,1,strict,What is being conflated?
+distinction,2,strict,What separation matters?
+focus,1,strict,What is in focus?
+focus,2,strict,What is out of focus?
+goal,1,strict,What is the goal?
+goal,2,strict,What remains the task?
+granularity,1,strict,What granularity is active?
+granularity,2,strict,What level of detail is present?
+identity,1,strict,What is this?
+identity,2,strict,What is being identified?
+identity,3,strict,What is unnamed?
+identity,4,strict,What identity is assumed?
+inference,1,strict,What is being inferred?
+inference,2,strict,What follows directly?
+inference,3,strict,What does not follow?
+inference,4,strict,What is being concluded?
+inference,5,strict,What is the inference step?
+precision,1,strict,What is underspecified?
+precision,2,strict,What needs definition?
+redundancy,1,strict,What is redundant?
+redundancy,2,strict,What repeats?
+reference,1,strict,What is this referring to?
+reference,2,strict,What is undefined?
+relation,1,strict,What relation is assumed?
+relation,2,strict,What is explicitly connected?
+relation,3,strict,What connection is implicit?
+relevance,1,strict,What is relevant?
+relevance,2,strict,What is irrelevant?
+representation,1,strict,What is not represented?
+representation,2,strict,What is explicit?
+representation,3,strict,What is implicit?
+resolution,1,strict,What is resolved?
+salience,1,strict,What matters now?
+salience,2,strict,What is peripheral?
+scope,1,strict,What is in scope?
+scope,2,strict,What is outside scope?
+scope,3,strict,What scope is active?
+sequence,1,strict,What step is current?
+sequence,2,strict,What came before this?
+sequence,3,strict,What order is active?
+stability,1,strict,What is stable?
+stability,2,strict,What is unstable?
+state,1,strict,What is the current state?
+state,2,strict,What remains in state?
+sufficiency,1,strict,What is insufficient?
+sufficiency,2,strict,What has enough support?
+traceability,1,strict,Where did this come from?
+traceability,2,strict,What connects this to the state?
+transition,1,strict,What changed?
+transition,2,strict,What carried forward?
+transition,3,strict,What was dropped?
+transition,4,strict,What follows from the prior state?
+uncertainty,1,strict,What remains uncertain?
+uncertainty,2,strict,Where is uncertainty concentrated?
+uncertainty,3,strict,What is ambiguous?
+uncertainty,4,strict,What has not been determined?
+validity,1,strict,What validity is claimed?
+validity,2,strict,What makes this valid?
+verification,1,strict,What is verified?
+verification,2,strict,What has been checked?
+verification,3,strict,What supports this?
+verification,4,strict,What is directly observed?
+brittleness,1,booster,What is brittle?
+closure,1,booster,What is closing too soon?
+closure,2,booster,What is treated as settled?
+closure,3,booster,What remains open despite closure?
+drift,1,booster,What is drifting?
+drift,2,booster,What changed without notice?
+drift,3,booster,What moved from the goal?
+fit,1,booster,What does not fit?
+fit,2,booster,What is out of place?
+friction,1,booster,What feels off?
+friction,2,booster,Where is the friction?
+friction,3,booster,What is not settling?
+friction,4,booster,What resists closure?
+hinge,1,booster,What does this turn on?
+hinge,2,booster,What is load-bearing?
+hinge,3,booster,What point carries this?
+noise,1,booster,What is noise?
+noise,2,booster,What does not affect the state?
+orientation,1,booster,What frame is active?
+orientation,2,booster,What is being centered?
+orientation,3,booster,What orientation is assumed?
+overreach,1,booster,What exceeds support?
+overreach,2,booster,What goes beyond the state?
+pressure,1,booster,What pressure is active?
+pressure,2,booster,What is pulling the reasoning?
+pressure,3,booster,What is pushing commitment?
+residue,1,booster,What remains after this?
+silence,1,booster,What is unsaid?
+silence,2,booster,What is absent but relevant?
+surprise,1,booster,What is unexpected?
+surprise,2,booster,What violates expectation?
+surprise,3,booster,What expectation was active?
+tension,1,booster,What is in tension?
+tension,2,booster,What pulls against this?
+thin_support,1,booster,What is under-supported?
+thin_support,2,booster,What is unsupported but active?

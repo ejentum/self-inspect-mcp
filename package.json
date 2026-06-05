@@ -1,0 +1,22 @@
+{
+  "name": "self-inspect",
+  "version": "0.1.0",
+  "description": "Open, keyless, heuristic self-inspection metathoughts. An agent describes what it is doing; it gets back one metathought that makes it inspect its own reasoning. CSV is the single source of truth; the deployed engine is provably the published code.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Ejentum <info@ejentum.com>",
+  "homepage": "https://ejentum.com",
+  "scripts": {
+    "build": "node build/build-codenode.mjs",
+    "test": "node --test"
+  },
+  "files": [
+    "selfinspect.csv",
+    "src",
+    "build",
+    "dist",
+    "fixtures",
+    "README.md",
+    "LICENSE"
+  ]
+}

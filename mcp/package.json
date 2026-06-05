@@ -1,0 +1,47 @@
+{
+  "name": "self-inspect-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Self-Inspect: one keyless tool that returns a single self-inspection metathought for what your agent is currently doing. Calls the public api.ejentum.com/self-inspect endpoint, or runs the published heuristic fully offline with SELF_INSPECT_LOCAL=1. No API key.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "self-inspect-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "vendor",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "vendor": "node scripts/vendor.mjs",
+    "prebuild": "node scripts/vendor.mjs",
+    "build": "tsc",
+    "predev": "node scripts/vendor.mjs",
+    "dev": "tsx src/index.ts",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "self-inspection",
+    "metacognition",
+    "ejentum",
+    "agentic-ai"
+  ],
+  "license": "MIT",
+  "author": "Ejentum <info@ejentum.com>",
+  "homepage": "https://ejentum.com",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,5 @@
+node_modules/
+mcp/node_modules/
+mcp/dist/
+mcp/vendor/
+*.log
