@@ -1,7 +1,7 @@
-# Force LF everywhere so the generated artifacts (dist/code-node.js,
-# dist/backend.cjs) stay byte-identical to the generator output on every
-# platform. Without this, autocrlf would rewrite checkouts to CRLF on Windows
-# and the drift test would fail on a fresh clone.
+# Force LF everywhere so the generated artifact (dist/backend.cjs) stays
+# byte-identical to the generator output on every platform. Without this,
+# autocrlf would rewrite checkouts to CRLF on Windows and the drift test
+# would fail on a fresh clone.
 * text=auto eol=lf
 
 # Images are binary: never apply text or line-ending conversion.

@@ -7,7 +7,7 @@
   "author": "Ejentum <info@ejentum.com>",
   "homepage": "https://ejentum.com",
   "scripts": {
-    "build": "node build/build-codenode.mjs",
+    "build": "node build/build.mjs",
     "test": "node --test"
   },
   "files": [

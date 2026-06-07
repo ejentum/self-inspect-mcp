@@ -1,7 +1,7 @@
 // Self-Inspect text normalization.
 //
-// THE drift hazard: the local module, the generator, and the deployed n8n code
-// node MUST normalize identically, or "published == deployed" silently breaks.
+// THE drift hazard: the local module, the generator, and the deployed backend
+// MUST normalize identically, or "published == deployed" silently breaks.
 // This file is the single copy. The generator inlines it verbatim; the MCP and
 // tests import it. Do not fork this logic anywhere.
 //

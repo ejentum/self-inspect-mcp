@@ -2,6 +2,8 @@
 
 MCP server exposing one tool, `self_inspect`. The agent passes a one or two sentence description of what it is doing; the tool returns a single self-inspection metathought (a concrete self-check) or a no-match note. Keyless and free.
 
+**What it does, measured:** in a 30-turn design session, agents calling `self_inspect` each turn surfaced **~3.5x more decision-forks** (assumptions, edge cases, preconditions) than the *identical* agent with no tool, the forks it would otherwise pass over in silence. Data, observations, and a one-command reproduction: [evaluation](https://github.com/ejentum/self-inspect-mcp/tree/master/evals).
+
 By default it calls the public endpoint `https://api.ejentum.com/self-inspect`. It can also run the exact same published heuristic fully offline.
 
 ## Install (stdio)
