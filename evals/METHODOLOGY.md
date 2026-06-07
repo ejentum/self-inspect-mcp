@@ -3,7 +3,7 @@
 ## Design
 A twin comparison on one fixed conversation:
 
-- **Model:** Claude Sonnet, four independent agents.
+- **Model:** Claude Sonnet 4.6, four independent agents.
 - **2 tool agents:** call Self-Inspect once at the start of every turn, with a one-sentence
   statement of what they are about to do, and let the returned metathought inform the turn.
 - **2 no-tool agents:** the control.

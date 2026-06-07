@@ -123,7 +123,7 @@ git diff --exit-code dist/backend.cjs   # clean == no drift
 
 ## Evaluation
 
-What does the metathought actually change? In a 30-turn software-design conversation, agents that called Self-Inspect once per turn surfaced **~3.5x more decision-forks** (assumptions, edge cases, preconditions) than the *identical* agent with no tool: same model, same conversation, same prompt. The full data, the verbatim metathoughts, and a one-command reproduction (`node evals/tools/analyze.mjs`) are in [`evals/`](evals/).
+What does the metathought actually change? In a 30-turn software-design conversation, agents that called Self-Inspect once per turn surfaced **~3.5x more decision-forks** (assumptions, edge cases, preconditions) than the *identical* agent with no tool: same model (Claude Sonnet 4.6), same conversation, same prompt. The full data, the verbatim metathoughts, and a one-command reproduction (`node evals/tools/analyze.mjs`) are in [`evals/`](evals/).
 
 ## Response contract
 

@@ -17,7 +17,7 @@ surfaced **~3.5x more decision-forks** — assumptions, edge cases, and precondi
                         -> ~3.5x
 ```
 
-Same model (Claude Sonnet), same fixed conversation, same prompt. The only difference is the
+Same model (Claude Sonnet 4.6), same fixed conversation, same prompt. The only difference is the
 one metathought per turn. (`node evals/tools/analyze.mjs` reproduces this from the logs here.)
 
 ## What that means
