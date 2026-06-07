@@ -78,7 +78,7 @@ The MCP server exposes one tool, `self_inspect`, that takes a `thought` and retu
 |---|---|---|---|
 | REST | `POST https://api.ejentum.com/self-inspect` | keyless, per-IP rate limit (120/min) | `[{ label, metathought }]` |
 | MCP over HTTP | `https://api.ejentum.com/self-inspect-mcp` (Streamable HTTP) | keyless, per-IP rate limit (60/min) | tool `self_inspect` -> metathought text |
-| MCP stdio / offline | the `mcp/` package; `SELF_INSPECT_LOCAL=1` runs the selector locally | keyless | tool `self_inspect` (npm publish pending) |
+| MCP stdio / offline | the `mcp/` package; `SELF_INSPECT_LOCAL=1` runs the selector locally | keyless | tool `self_inspect` (`npx self-inspect-mcp`) |
 
 Both hosted endpoints are keyless and protected by per-IP rate limiting plus standard security headers (HSTS, `nosniff`, frame-deny).
 
