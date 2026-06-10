@@ -41,6 +41,20 @@ And the mechanism in one exchange (turn 18): the tool returned `What is assumed?
 answered *"I've been assuming persistence lives outside the module"* — surfacing a standing
 assumption it had never stated.
 
+## What we measure, and why not "correctness"
+
+The obvious question is whether Self-Inspect makes the final output more *correct*. We looked at
+that first, across well-specified coding tasks, and it didn't move the result — and that is the
+finding, not a disappointment. When a capable model is handed a fully-specified task, it does not
+make the kind of mistake a single question catches; there is nothing there to fix. Correctness
+only has room to move where the model is making a fallible judgment call, not where it is already
+competent.
+
+So the axis that matters is upstream: not whether the answer changes, but whether the agent's
+*process* changes — which assumptions it surfaces, which forks it names, before it commits. That
+is what the result above measures, and where the effect is large and consistent. Self-Inspect is
+an attention and transparency amplifier, not an answer-corrector, and we evaluate it as one.
+
 ## It's real, and it's deterministic
 
 Self-Inspect uses no LLM. The question is selected by a transparent heuristic over an open CSV,
