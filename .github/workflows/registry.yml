@@ -1,0 +1,32 @@
+name: Publish to MCP Registry
+
+# Manual / bootstrap publish of server.json to the official MCP registry.
+# Uses GitHub OIDC to authenticate the io.github.ejentum namespace (no secret).
+# The npm package is published separately (locally or by release.yml on a tag).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mcp-publisher
+        run: |
+          curl -L -o /tmp/mcp-publisher.tar.gz \
+            "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz"
+          tar -xzf /tmp/mcp-publisher.tar.gz -C /tmp/
+          sudo mv /tmp/mcp-publisher /usr/local/bin/mcp-publisher
+          mcp-publisher --help | head -3
+
+      - name: Publish to Official MCP Registry via OIDC
+        run: |
+          mcp-publisher login github-oidc
+          mcp-publisher publish
