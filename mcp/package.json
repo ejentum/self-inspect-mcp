@@ -1,6 +1,7 @@
 {
   "name": "self-inspect-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.ejentum/self-inspect-mcp",
   "description": "MCP server for Self-Inspect: one keyless tool that returns a single self-inspection metathought for what your agent is currently doing. Calls the public api.ejentum.com/self-inspect endpoint, or runs the published heuristic fully offline with SELF_INSPECT_LOCAL=1. No API key.",
   "type": "module",
   "main": "dist/index.js",
@@ -32,6 +33,13 @@
   "license": "MIT",
   "author": "Ejentum <info@ejentum.com>",
   "homepage": "https://ejentum.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ejentum/self-inspect-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ejentum/self-inspect-mcp/issues"
+  },
   "engines": {
     "node": ">=18"
   },

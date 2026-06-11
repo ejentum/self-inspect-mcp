@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ejentum/self-inspect-mcp",
+  "description": "One keyless tool: send a thought, get one metathought that makes your agent inspect its own assumptions. Deterministic, no LLM, open CSV. Stdio (npm) or HTTPS api.ejentum.com/self-inspect-mcp.",
+  "repository": {
+    "url": "https://github.com/ejentum/self-inspect-mcp",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "self-inspect-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.ejentum.com/self-inspect-mcp"
+    }
+  ]
+}

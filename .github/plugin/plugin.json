@@ -1,0 +1,25 @@
+{
+  "name": "self-inspect",
+  "description": "One keyless tool: send a thought, get one metathought that makes your agent inspect its own assumptions before it continues. Measured: ~3.5x more assumptions and edge cases surfaced vs an identical no-tool agent. Deterministic, no LLM, no API key.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Ejentum",
+    "url": "https://ejentum.com"
+  },
+  "repository": "https://github.com/ejentum/self-inspect-mcp",
+  "homepage": "https://github.com/ejentum/self-inspect-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "self-inspection",
+    "metacognition",
+    "agents",
+    "keyless"
+  ],
+  "mcpServers": {
+    "self-inspect": {
+      "command": "npx",
+      "args": ["-y", "self-inspect-mcp"]
+    }
+  }
+}

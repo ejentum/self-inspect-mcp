@@ -1,0 +1,42 @@
+{
+  "manifest_version": "0.2",
+  "name": "self-inspect-mcp",
+  "display_name": "Self-Inspect",
+  "version": "0.1.1",
+  "description": "One keyless tool: send a thought, get one metathought that makes your agent inspect its own assumptions before it continues. Deterministic, no LLM, no API key.",
+  "long_description": "Self-Inspect returns one short, abstract question (a metathought) for whatever an agent is about to do, selected by a transparent heuristic over an open CSV. No LLM, no embeddings, no key. In a published 30-turn eval, agents calling it surfaced ~3.5x more assumptions and edge cases than an identical agent without it (data and reproduction in the repo).",
+  "author": {
+    "name": "Ejentum",
+    "email": "info@ejentum.com",
+    "url": "https://ejentum.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ejentum/self-inspect-mcp"
+  },
+  "homepage": "https://github.com/ejentum/self-inspect-mcp",
+  "documentation": "https://github.com/ejentum/self-inspect-mcp/tree/master/evals",
+  "support": "https://github.com/ejentum/self-inspect-mcp/issues",
+  "license": "MIT",
+  "keywords": ["self-inspection", "metacognition", "agentic-ai", "keyless"],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"]
+    }
+  },
+  "tools": [
+    {
+      "name": "self_inspect",
+      "description": "Send a thought; get one metathought that makes the agent inspect its own assumptions."
+    }
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

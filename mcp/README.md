@@ -1,5 +1,8 @@
 # self-inspect-mcp
 
+[![npm](https://img.shields.io/npm/v/self-inspect-mcp.svg)](https://www.npmjs.com/package/self-inspect-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.ejentum%2Fself--inspect--mcp-blue)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.ejentum/self-inspect-mcp)
+
 MCP server exposing one tool, `self_inspect`. The agent passes a one or two sentence description of what it is doing; the tool returns a single self-inspection metathought (a concrete self-check) or a no-match note. Keyless and free.
 
 **What it does, measured:** in a 30-turn design session (Claude Sonnet 4.6), agents calling `self_inspect` each turn surfaced **~3.5x more decision-forks** (assumptions, edge cases, preconditions) than the *identical* agent with no tool, the forks it would otherwise pass over in silence. Data, observations, and a one-command reproduction: [evaluation](https://github.com/ejentum/self-inspect-mcp/tree/master/evals).

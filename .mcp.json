@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "self-inspect": {
+      "command": "npx",
+      "args": ["-y", "self-inspect-mcp"]
+    }
+  }
+}
