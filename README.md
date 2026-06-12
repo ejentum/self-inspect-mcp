@@ -72,6 +72,23 @@ claude mcp add --transport http self-inspect https://api.ejentum.com/self-inspec
 
 The MCP server exposes one tool, `self_inspect`, that takes a `thought` and returns the metathought. No install, no key.
 
+**Python (single file, zero dependencies):**
+
+For Python environments, [`dist/self_inspect.py`](dist/self_inspect.py) is the whole engine in one file — the CSV is inlined, stdlib only, nothing to install. It runs the exact published selector locally (~2 ms per call, no network):
+
+```sh
+python self_inspect.py "I am committing to this architecture and treating it as fixed"
+# -> [{"label": "commitment", "metathought": "What is fixed?"}]
+```
+
+```python
+from self_inspect import self_inspect
+self_inspect("I am about to assert the default timeout is 30s from memory")
+# -> {"label": ..., "metathought": ...}
+```
+
+A cross-language parity test (`test/parity.python.test.mjs`) holds it byte-identical to the JS engine — same thought, same metathought, in Python, JS, or against the hosted endpoint.
+
 ## Endpoints
 
 | Surface | Endpoint | Auth | Returns |
@@ -109,9 +126,9 @@ The returned `id` is `input_type-operator_rank` (e.g. `confidence-4`). To add or
 
 ## Published == deployed (enforced, not promised)
 
-`npm run build` regenerates `dist/backend.cjs` from `selfinspect.csv` + `src/normalize.js` + `src/selector.js` (`build/generate.mjs`). That file is the literal engine behind the hosted endpoint.
+`npm run build` regenerates `dist/backend.cjs` (the engine behind the hosted endpoint) and `dist/self_inspect.py` (the single-file Python port) from `selfinspect.csv` + `src/normalize.js` + `src/selector.js` (`build/generate.mjs`).
 
-`test/drift.test.mjs` fails if `dist/backend.cjs` is not byte-identical to the generator output. So a committed engine that drifts from the CSV/selector cannot pass CI. Anyone can clone this repo, run the fixtures locally and against the live endpoint, and confirm identical selection.
+`test/drift.test.mjs` fails if either committed artifact is not byte-identical to the generator output, and `test/parity.python.test.mjs` fails if the Python port's results diverge from the JS selector on the full corpus. So an engine that drifts from the CSV/selector — in either language — cannot pass CI. Anyone can clone this repo, run the fixtures locally and against the live endpoint, and confirm identical selection.
 
 ## Verify
 
