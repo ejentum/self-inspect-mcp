@@ -3,3 +3,7 @@ mcp/node_modules/
 mcp/dist/
 mcp/vendor/
 *.log
+
+# Python bytecode (from running dist/self_inspect.py)
+__pycache__/
+*.pyc
