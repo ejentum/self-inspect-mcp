@@ -6,6 +6,10 @@
 
 **A question your agent would not think to ask itself.**
 
+[![CI](https://github.com/ejentum/self-inspect-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ejentum/self-inspect-mcp/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/self-inspect-mcp.svg)](https://www.npmjs.com/package/self-inspect-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.ejentum%2Fself--inspect--mcp-blue)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.ejentum/self-inspect-mcp)
+
 An agent sends a thought, or a description of the task it is working on. It gets back one *metathought*: a short, abstract question that turns the agent's attention back onto its own task and assumptions before it continues. Not advice, not an answer. A question.
 
 Keyless, free, deterministic. No LLM, no embeddings, no semantic similarity. Selection is a small heuristic over an open CSV you can read in five minutes, and the code that answers `api.ejentum.com/self-inspect` is the code in this repo. A test proves the two cannot drift.
@@ -128,7 +132,7 @@ The returned `id` is `input_type-operator_rank` (e.g. `confidence-4`). To add or
 
 `npm run build` regenerates `dist/backend.cjs` (the engine behind the hosted endpoint) and `dist/self_inspect.py` (the single-file Python port) from `selfinspect.csv` + `src/normalize.js` + `src/selector.js` (`build/generate.mjs`).
 
-`test/drift.test.mjs` fails if either committed artifact is not byte-identical to the generator output, and `test/parity.python.test.mjs` fails if the Python port's results diverge from the JS selector on the full corpus. So an engine that drifts from the CSV/selector — in either language — cannot pass CI. Anyone can clone this repo, run the fixtures locally and against the live endpoint, and confirm identical selection.
+`test/drift.test.mjs` fails if either committed artifact is not byte-identical to the generator output, and `test/parity.python.test.mjs` fails if the Python port's results diverge from the JS selector on the full corpus. So an engine that drifts from the CSV/selector, in either language, cannot pass CI: the full suite runs on every push and pull request (`.github/workflows/ci.yml`), on a runner with Python installed so the parity test actually executes. Anyone can clone this repo, run the fixtures locally and against the live endpoint, and confirm identical selection.
 
 ## Verify
 

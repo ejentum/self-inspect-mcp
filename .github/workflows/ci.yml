@@ -1,0 +1,32 @@
+name: CI
+
+# Runs the full suite on every push and PR. ubuntu-latest ships python3, so the
+# JS<->Python parity test executes (it skips only when no Python is on PATH).
+# This is what enforces "an engine that drifts from the CSV/selector cannot pass CI"
+# for BOTH the JS backend and the Python port.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Show Python (for the parity test)
+        run: python3 --version
+
+      - name: Tests (selector fixtures, drift, JS<->Python parity)
+        run: npm test
