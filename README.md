@@ -46,6 +46,15 @@ Send a thought, get a metathought, answer it to yourself, continue with more awa
 
 Self-inspect hands back the one question that names the assumption your claim is quietly resting on. Answer it with a concrete counterexample and rebuild the claim around what breaks; do not just acknowledge the question and move on. Call it only at a genuine wall you cannot get past on your own, never on a schedule: forcing it every step manufactures fake corrections that read worse than using nothing. (This recipe is what separated the strongest runs from the weakest in our own evaluation.)
 
+## What the evaluation found
+
+From a multi-run benchmark (a small model and a frontier model, 40-turn open-ended reasoning, blind order-swapped judging):
+
+- **Reliable and auditable.** The metathought is returned deterministically; every call re-runs byte-identical, so what the agent checked is a verifiable, model-independent record. Its strongest, most defensible property.
+- **It was the only thing that made an agent question its own assumptions.** A no-tool control built confident theory and never once asked whether it was confabulating; with self-inspect, the agent surfaced and named load-bearing assumptions it could not see on its own, and at a genuine wall the question redirected the investigation into new ground instead of confirming where it was already heading.
+- **The uplift is conditional, not automatic.** It appears only when the question is answered with a real counterexample and the claim is rebuilt, and only when the call lands at a genuine wall on a model capable of judging it is stuck. Fired every step it is net-negative: it manufactures staged corrections (overclaim, then a scheduled walk-back) that judge worse than using no tool.
+- **Use it as a gated checkpoint, not a wrapper.** It makes reasoning legible and checkable at the moments that matter; it does not make a weak reasoner strong.
+
 ## Quickstart
 
 Send a `thought`, get a `metathought`. No key.
