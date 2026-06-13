@@ -42,6 +42,10 @@ Put it in the loop at the moments an agent would otherwise barrel through:
 
 Send a thought, get a metathought, answer it to yourself, continue with more awareness. It always returns a question (there is no "no result" case), one call, no model in the loop, no key.
 
+## How to use the metathought (the recipe)
+
+Self-inspect hands back the one question that names the assumption your claim is quietly resting on. Answer it with a concrete counterexample and rebuild the claim around what breaks; do not just acknowledge the question and move on. Call it only at a genuine wall you cannot get past on your own, never on a schedule: forcing it every step manufactures fake corrections that read worse than using nothing. (This recipe is what separated the strongest runs from the weakest in our own evaluation.)
+
 ## Quickstart
 
 Send a `thought`, get a `metathought`. No key.
